@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -51,7 +52,7 @@ const Register = () => {
             value={name}
             onChange={(e) => setName(e.target.value)}
             style={{
-              color: "#D9D9D9",
+              color: "black",
               backgroundColor: "#D9D9D9",
               marginLeft: 48,
               fontSize: 16,
@@ -63,8 +64,8 @@ const Register = () => {
           />
         </div>
 
-                {/* ช่องกรอกหมายเลขโทรศัพท์ */}
-                <div className="input-group">
+        {/* ช่องกรอกหมายเลขโทรศัพท์ */}
+        <div className="input-group">
           <p
             style={{
               color: "#FFFFFF",
@@ -75,7 +76,7 @@ const Register = () => {
               marginTop: 16,
             }}
           >
-            เบอร์โทรศัพท์
+            หมายเลขโทรศัพท์
           </p>
           <input
             type="tel"
@@ -83,7 +84,7 @@ const Register = () => {
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
             style={{
-              color: "#D9D9D9",
+              color: "black",
               backgroundColor: "#D9D9D9",
               marginLeft: 48,
               fontSize: 16,
@@ -111,7 +112,7 @@ const Register = () => {
           <label htmlFor="email"></label>
           <input
             style={{
-              color: "#D9D9D9",
+              color: "black",
               backgroundColor: "#D9D9D9",
               marginLeft: 48,
               fontSize: 16,
@@ -148,7 +149,7 @@ const Register = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             style={{
-              color: "#D9D9D9",
+              color: "black",
               backgroundColor: "#D9D9D9",
               marginLeft: 48,
               fontSize: 16,
@@ -179,7 +180,7 @@ const Register = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             style={{
-              color: "#D9D9D9",
+              color: "black",
               backgroundColor: "#D9D9D9",
               marginLeft: 48,
               fontSize: 16,

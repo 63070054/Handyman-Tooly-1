@@ -1,26 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-const Login = () => {
-  const [email, setEmail] = useState("");
+const PDPAAccount = () => {
+  const [id, setId] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [phone, setPhone] = useState("");
   const [image, setImage] = useState(null); // state สำหรับเก็บรูปภาพ
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // ตรวจสอบข้อมูลที่กรอก
-    if (!email || !password) {
-      setError("Please enter both email and password");
-    } else {
-      setError("");
-      // ทำการ login (ตัวอย่าง, ควรเชื่อม API จริงในโปรเจ็กต์จริง)
-      console.log("Logging in with:", email, password);
-      if (image) {
-        console.log("Uploaded image:", image);
-      }
-    }
   };
 
   const handleImageChange = (e) => {
@@ -37,16 +25,81 @@ const Login = () => {
   return (
     <div className="login-container" style={{ background: "#1E90FF" }}>
       <img
-        src="logoHandy.png"
-        alt="Logo"
+        src="wonder.png"
+        alt="wonder"
         style={{
-          width: 250,
+          width: 160,
           height: "auto",
           display: "block",
           marginLeft: "auto",
           marginRight: "auto",
+          borderRadius: "50%",
         }}
       />
+      <form onSubmit={handleSubmit}>
+        <div className="input-group">
+          <p
+            style={{
+              color: "#FFFFFF",
+              fontFamily: "Prompt",
+              fontSize: 16,
+              fontWeight: 600,
+              marginLeft: 48,
+              marginTop: 0,
+            }}
+          >
+            เลขบัตรประชาชน
+          </p>
+          <input
+            type="tel"
+            placeholder="XXXXXXXXXXXXXX"
+            value={id}
+            onChange={(e) => setId(e.target.value)}
+            style={{
+              color: "black",
+              backgroundColor: "#D9D9D9",
+              marginLeft: 48,
+              fontSize: 16,
+              width: 300,
+              paddingBlock: 16,
+              border: "2px solid #D9D9D9",
+              borderRadius: 10,
+            }}
+          />
+        </div>
+      </form>
+
+      {/* ช่องกรอกหมายเลขโทรศัพท์ */}
+      <div className="input-group">
+        <p
+          style={{
+            color: "#FFFFFF",
+            fontFamily: "Prompt",
+            fontSize: 16,
+            fontWeight: 600,
+            marginLeft: 48,
+            marginTop: 16,
+          }}
+        >
+          หมายเลขโทรศัพท์
+        </p>
+        <input
+          type="tel"
+          placeholder="Phone Number"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+          style={{
+            color: "black",
+            backgroundColor: "#D9D9D9",
+            marginLeft: 48,
+            fontSize: 16,
+            width: 300,
+            paddingBlock: 16,
+            border: "2px solid #D9D9D9",
+            borderRadius: 10,
+          }}
+        />
+      </div>
 
       {/* ฟอร์ม Login */}
       <form onSubmit={handleImageChange}>
@@ -58,7 +111,7 @@ const Login = () => {
               fontSize: 16,
               fontWeight: 600,
               marginLeft: 48,
-              marginTop: 0,
+              marginTop: 16,
             }}
           >
             อีเมล์ผู้ใช้งาน
@@ -84,75 +137,11 @@ const Login = () => {
           />
         </div>
 
-        <div className="input-group">
-          <p
-            style={{
-              color: "#FFFFFF",
-              fontFamily: "Prompt",
-              fontSize: 16,
-              fontWeight: 600,
-              marginLeft: 48,
-              marginTop: 16,
-            }}
-          >
-            รหัสผ่าน
-          </p>
-          <input
-            style={{
-              color: "black",
-              backgroundColor: "#D9D9D9",
-              marginLeft: 48,
-              fontSize: 16,
-              width: 300,
-              paddingBlock: 16,
-              border: "2px solid #D9D9D9",
-              borderRadius: 10,
-            }}
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Enter your password"
-            required
-          />
-        </div>
-
-        <button
-          type="submit"
-          style={{
-            display: "block",
-            margin: "0 auto",
-            marginTop: 30,
-            color: "#1E90FF",
-            backgroundColor: "#D9D9D9",
-            fontFamily: "Prompt",
-            fontSize: 16,
-            fontWeight: 600,
-            width: 130,
-            paddingBlock: 5,
-            border: "2px solid #D9D9D9",
-            borderRadius: 10,
-          }}
-        >
-          เข้าสู่ระบบ
-        </button>
-        <p
-          style={{
-            textAlign: "center",
-            marginBlock: 5,
-            color: "#FFFFFF",
-            fontFamily: "Prompt",
-            fontSize: 14,
-            fontWeight: 400,
-          }}
-        >
-          ลืมรหัสผ่าน
-        </p>
-        <Link to="/register" style={{ textDecoration: "none" }}>
+        <Link to="/login" style={{ textDecoration: "none" }}>
           <p
             style={{
               textAlign: "center",
-              marginTop: 5,
+              marginTop: 32,
               marginBottom: 100,
               color: "#FFFFFF",
               fontFamily: "Prompt",
@@ -160,7 +149,7 @@ const Login = () => {
               fontWeight: 400,
             }}
           >
-            สมัครสมาชิก
+            ออกจากระบบ
           </p>
         </Link>
       </form>
@@ -168,4 +157,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default PDPAAccount;
