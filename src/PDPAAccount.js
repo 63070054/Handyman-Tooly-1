@@ -1,29 +1,23 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 
-const PDPAAccount = () => {
-  const [id, setId] = useState("");
-  const [password, setPassword] = useState("");
-  const [phone, setPhone] = useState("");
-  const [image, setImage] = useState(null); // state สำหรับเก็บรูปภาพ
+const Register = () => {
+  const [id, setID] = useState("");
+  const [adress, setAdress] = useState("");
+  const [anything, setAnything] = useState("");
+  const [error, setError] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  };
-
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImage(reader.result);
-      };
-      reader.readAsDataURL(file);
+    if (!id || !adress) {
+      setError("กรุณากรอกข้อมูลให้ครบ");
+      return;
     }
+    setError("");
+    alert("กรอกข้อมูลสำเร็จ!");
   };
 
   return (
-    <div className="login-container" style={{ background: "#1E90FF" }}>
+    <div>
       <img
         src="wonder.png"
         alt="wonder"
@@ -36,6 +30,7 @@ const PDPAAccount = () => {
           borderRadius: "50%",
         }}
       />
+
       <form onSubmit={handleSubmit}>
         <div className="input-group">
           <p
@@ -45,16 +40,16 @@ const PDPAAccount = () => {
               fontSize: 16,
               fontWeight: 600,
               marginLeft: 48,
-              marginTop: 0,
+              marginTop: 32,
             }}
           >
-            เลขบัตรประชาชน
+            หมายเลขบัตรประชาชน
           </p>
           <input
             type="tel"
-            placeholder="XXXXXXXXXXXXXX"
+            placeholder="x-xxxx-xxxxx-xx-x"
             value={id}
-            onChange={(e) => setId(e.target.value)}
+            onChange={(e) => setID(e.target.value)}
             style={{
               color: "black",
               backgroundColor: "#D9D9D9",
@@ -67,42 +62,6 @@ const PDPAAccount = () => {
             }}
           />
         </div>
-      </form>
-
-      {/* ช่องกรอกหมายเลขโทรศัพท์ */}
-      <div className="input-group">
-        <p
-          style={{
-            color: "#FFFFFF",
-            fontFamily: "Prompt",
-            fontSize: 16,
-            fontWeight: 600,
-            marginLeft: 48,
-            marginTop: 16,
-          }}
-        >
-          หมายเลขโทรศัพท์
-        </p>
-        <input
-          type="tel"
-          placeholder="Phone Number"
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-          style={{
-            color: "black",
-            backgroundColor: "#D9D9D9",
-            marginLeft: 48,
-            fontSize: 16,
-            width: 300,
-            paddingBlock: 16,
-            border: "2px solid #D9D9D9",
-            borderRadius: 10,
-          }}
-        />
-      </div>
-
-      {/* ฟอร์ม Login */}
-      <form onSubmit={handleImageChange}>
         <div className="input-group">
           <p
             style={{
@@ -114,10 +73,14 @@ const PDPAAccount = () => {
               marginTop: 16,
             }}
           >
-            อีเมล์ผู้ใช้งาน
+            ที่อยู่
           </p>
-          <label htmlFor="email"></label>
-          <input
+          <textarea
+            type="text"
+            placeholder="xxxxxxxxxxxxxxx"
+            value={adress}
+            onChange={(e) => setAdress(e.target.value)}
+            rows={3}
             style={{
               color: "black",
               backgroundColor: "#D9D9D9",
@@ -127,34 +90,62 @@ const PDPAAccount = () => {
               paddingBlock: 16,
               border: "2px solid #D9D9D9",
               borderRadius: 10,
+              resize: "none",
             }}
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter your email"
-            required
           />
         </div>
-
-        <Link to="/login" style={{ textDecoration: "none" }}>
+        <div className="input-group">
           <p
             style={{
-              textAlign: "center",
-              marginTop: 32,
-              marginBottom: 100,
               color: "#FFFFFF",
               fontFamily: "Prompt",
-              fontSize: 14,
-              fontWeight: 400,
+              fontSize: 16,
+              fontWeight: 600,
+              marginLeft: 48,
+              marginTop: 16,
             }}
           >
-            ออกจากระบบ
+            ข้อมูลเพิ่มเติม
           </p>
-        </Link>
+          <textarea
+            value={anything}
+            onChange={(e) => setAnything(e.target.value)}
+            style={{
+              color: "black",
+              backgroundColor: "#D9D9D9",
+              marginLeft: 48,
+              fontSize: 16,
+              width: 300,
+              padding: "10px",
+              border: "2px solid #D9D9D9",
+              borderRadius: 10,
+            }}
+         />
+        </div>
+
+        <button
+          type="submit"
+          style={{
+            display: "block",
+            margin: "0 auto",
+            marginTop: 30,
+            color: "#1E90FF",
+            backgroundColor: "#D9D9D9",
+            fontFamily: "Prompt",
+            fontSize: 16,
+            fontWeight: 600,
+            width: 130,
+            paddingBlock: 5,
+            border: "2px solid #D9D9D9",
+            borderRadius: 10,
+            marginBottom: 50,
+          }}
+        >
+          ยืนยัน
+        </button>
       </form>
     </div>
   );
 };
 
-export default PDPAAccount;
+export default Register;

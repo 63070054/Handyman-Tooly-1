@@ -19,7 +19,7 @@ function App() {
           justifyContent: "center",
         }}
       >
-      <PDPAAccount />
+        <PDPAAccount/>
         {/* <Routes>
           <Route path="/" element={<LoginorRegister />} />
           <Route path="/login" element={<Login />} />
