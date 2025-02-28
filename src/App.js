@@ -5,6 +5,9 @@ import Login from "./Login";  // Your Login component
 import Register from "./Register";  // Your Register component
 import Account from "./Account";
 import PDPAAccount from "./PDPAAccount";
+import Loading from "./Loading";
+import User from "./User";
+import BackButtonPage from "./BackButtonPage";
 
 function App() {
   return (
@@ -19,7 +22,8 @@ function App() {
           justifyContent: "center",
         }}
       >
-        <PDPAAccount/>
+        <User />
+        <Loading />
         {/* <Routes>
           <Route path="/" element={<LoginorRegister />} />
           <Route path="/login" element={<Login />} />
