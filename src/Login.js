@@ -1,36 +1,32 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { login } from "./services/userService";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [image, setImage] = useState(null); // state สำหรับเก็บรูปภาพ
 
-  const handleSubmit = (e) => {
+  const navigate = useNavigate(); // To navigate after successful login
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // ตรวจสอบข้อมูลที่กรอก
+    // Validate input fields
     if (!email || !password) {
       setError("Please enter both email and password");
-    } else {
-      setError("");
-      // ทำการ login (ตัวอย่าง, ควรเชื่อม API จริงในโปรเจ็กต์จริง)
-      console.log("Logging in with:", email, password);
-      if (image) {
-        console.log("Uploaded image:", image);
-      }
+      return;
     }
-  };
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImage(reader.result);
-      };
-      reader.readAsDataURL(file);
+    setError(""); // Clear previous error
+
+    try {
+      const credentials = { email, password };
+      await login(credentials);
+      navigate("/posts");
+    } catch (err) {
+      // Set error message for invalid login (incorrect password)
+      setError("รหัสผ่านผิดพลาด");
     }
   };
 
@@ -49,7 +45,7 @@ const Login = () => {
       />
 
       {/* ฟอร์ม Login */}
-      <form onSubmit={handleImageChange}>
+      <form onSubmit={handleSubmit}>
         <div className="input-group">
           <p
             style={{
@@ -117,6 +113,22 @@ const Login = () => {
           />
         </div>
 
+        {/* แสดงข้อความผิดพลาด */}
+        {error && (
+          <p
+            style={{
+              color: "red",
+              textAlign: "center",
+              fontFamily: "Prompt",
+              fontSize: 14,
+              fontWeight: 400,
+              marginTop: 10,
+            }}
+          >
+            {error}
+          </p>
+        )}
+
         <button
           type="submit"
           style={{
@@ -136,18 +148,6 @@ const Login = () => {
         >
           เข้าสู่ระบบ
         </button>
-        <p
-          style={{
-            textAlign: "center",
-            marginBlock: 5,
-            color: "#FFFFFF",
-            fontFamily: "Prompt",
-            fontSize: 14,
-            fontWeight: 400,
-          }}
-        >
-          ลืมรหัสผ่าน
-        </p>
         <Link to="/register" style={{ textDecoration: "none" }}>
           <p
             style={{

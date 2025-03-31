@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import BackButtonPage from "./BackButtonPage";
 
-const Register = () => {
+
+const PDPAAccount = () => {
   const [id, setID] = useState("");
   const [adress, setAdress] = useState("");
   const [anything, setAnything] = useState("");
@@ -18,6 +20,7 @@ const Register = () => {
 
   return (
     <div>
+      <BackButtonPage />
       <img
         src="wonder.png"
         alt="wonder"
@@ -148,4 +151,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default PDPAAccount;

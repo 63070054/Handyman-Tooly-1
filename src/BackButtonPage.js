@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { AiOutlineLeft } from "react-icons/ai";
 
 const BackButtonPage = () => {
+  const navigate = useNavigate();
 
   return (
     <div
@@ -11,12 +12,15 @@ const BackButtonPage = () => {
         background: "#1E90FF",
         display: "flex",
         alignItems: "center",
-        paddingLeft: 10, // ระยะห่างไอคอนจากขอบ
+        paddingTop: 16,
+        cursor: "pointer", // เพิ่ม cursor pointer เพื่อให้รู้ว่าคลิกได้
       }}
+      onClick={() => navigate(-1)} // กดแล้วกลับไปหน้าก่อนหน้า
     >
-      <AiOutlineLeft size={16} color="white" />
+      <AiOutlineLeft size={32} color="white" />
     </div>
   );
 };
 
 export default BackButtonPage;
+

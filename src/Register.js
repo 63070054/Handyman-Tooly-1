@@ -1,21 +1,43 @@
 import React, { useState } from "react";
-
+import { register } from "./services/userService";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
 
-  const handleSubmit = (e) => {
+  const navigate = useNavigate(); // Initialize navigate
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!name || !email || !phone || !password) {
+
+    // Check if required fields are filled
+    if (!name || !email || !phone || !password || !confirmPassword) {
       setError("กรุณากรอกข้อมูลให้ครบ");
       return;
     }
-    setError("");
-    alert("สมัครสมาชิกสำเร็จ!");
+
+    // Check if passwords match
+    if (password !== confirmPassword) {
+      setError("รหัสผ่านไม่ตรงกัน");
+      return;
+    }
+
+    setError(""); // Clear any previous errors
+
+    try {
+      // Call register API with the user's data
+      const userData = { name, email, phone, password, confirmPassword };
+      await register(userData); // API call to register
+      navigate("/login"); // Navigate to login page
+
+    } catch (err) {
+      setError("เกิดข้อผิดพลาดในการสมัครสมาชิก");
+    }
   };
 
   return (
@@ -176,9 +198,9 @@ const Register = () => {
           </p>
           <input
             type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Confirm Password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
             style={{
               color: "black",
               backgroundColor: "#D9D9D9",
@@ -191,6 +213,22 @@ const Register = () => {
             }}
           />
         </div>
+
+        {/* แสดงข้อความผิดพลาด */}
+        {error && (
+          <p
+            style={{
+              color: "red",
+              textAlign: "center",
+              fontFamily: "Prompt",
+              fontSize: 14,
+              fontWeight: 400,
+              marginTop: 10,
+            }}
+          >
+            {error}
+          </p>
+        )}
 
         <button
           type="submit"
