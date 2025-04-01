@@ -105,7 +105,6 @@ const Account = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder=""
-                  required
                   style={styles.input}
                 />
               </div>

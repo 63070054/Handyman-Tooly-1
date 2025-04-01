@@ -16,7 +16,7 @@ const Login = () => {
 
     // Validate input fields
     if (!email || !password) {
-      setError("Please enter both email and password");
+      setError("กรุณากรอกอีเมล์และรหัสผ่าน");
       return;
     }
 
