@@ -33,6 +33,7 @@ const CreatePost = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [formErrors, setFormErrors] = useState("");
+  const [imageError, setImageError] = useState("");
 
   const navigate = useNavigate();
   const { userInfo } = useUserStore();
@@ -99,6 +100,8 @@ const CreatePost = () => {
     if (!selectedAmphure) return setFormErrors("กรุณาเลือกอำเภอ");
     if (!selectedTambon) return setFormErrors("กรุณาเลือกตำบล");
 
+    setFormErrors("")
+    setImageError("")
     setLoading(true);
     try {
 
@@ -131,8 +134,24 @@ const CreatePost = () => {
 
   const handleImageChange = (fileItems) => {
     if (fileItems.length > 0) {
+      const file = fileItems[0].file;
+      if (file.size > 2 * 1024 * 1024) { // 2MB in bytes
+        setImageError("ขนาดไฟล์ควรมีขนาดต่ำกว่า 2 MB");
+        return;
+      }
+
+      const allowedTypes = ["image/jpeg", "image/png", "image/jpg"];
+
+      if (!allowedTypes.includes(file.type)) {
+        setImageError("โปรดเลือกนามสกุลไฟล์ที่ลงท้ายด้วย jpeg png และ jpg เท่านั้น");
+        return;
+      }
+
+
+      setImageError("")
       setImage(fileItems[0].file); // Assuming the fileItems array contains at least one file
     } else {
+      setImageError("")
       setImage(null); // Handle case when no file is selected
     }
   };
@@ -186,8 +205,8 @@ const CreatePost = () => {
             name="image"
             labelIdle=""
             acceptedFileTypes={['image/jpeg', 'image/png', 'image/jpg']}
-            maxFileSize="2MB"
           />
+          <ErrorMessage message={imageError} />
           {image && (
             <img src={URL.createObjectURL(image)} alt="Preview" style={{ width: "100%" }} />
           )}
