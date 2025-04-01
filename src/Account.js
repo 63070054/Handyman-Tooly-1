@@ -24,7 +24,14 @@ const Account = () => {
   return (
     <>
       {userInfo && (
-        <div style={{ position: "relative", minHeight: "100vh" }}>
+        <div
+          style={{
+            height: "100%",
+            display: "flex",
+            flexDirection: "column",
+            flex: 1,
+          }}
+        >
           <BackButtonPage
             style={{
               position: "fixed",
@@ -34,59 +41,81 @@ const Account = () => {
               zIndex: 1000,
             }}
           />
-          <img
-            src={userInfo.imageUrl}
-            alt={userInfo.imageUrl}
-            style={{
-              width: 160,
-              height: "auto",
-              display: "block",
-              margin: "60px auto 0",
-              borderRadius: "50%",
-            }}
-          />
+          <div style={{
+            height: "100%",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            flex: 1,
+          }}>
+            <img
+              src={userInfo.imageUrl}
+              alt={userInfo.imageUrl}
+              style={{
+                width: 160,
+                height: "auto",
+                display: "block",
+                margin: "60px auto 0",
+                borderRadius: "50%",
+                background: "#D9D9D9"
+              }}
+            />
+            <p
+              style={{
+                color: "#FFFFFF",
+                fontSize: 32,
+                fontWeight: 700,
+                textAlign: "center",
+                display: "flex",
+                justifyContent: "center",
+                margin: 8,
+              }}
+            >
+              {userInfo.name}
+            </p>
 
-          <form onSubmit={handleSubmit}>
-            <div className="input-group">
-              <p style={styles.label}>ชื่อผู้ใช้งาน</p>
-              <input
-                type="text"
-                placeholder=""
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                style={styles.input}
-              />
-            </div>
+            <form onSubmit={handleSubmit}>
+              <div className="input-group">
+                <p style={styles.label}>ชื่อผู้ใช้งาน</p>
+                <input
+                  type="text"
+                  placeholder=""
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  style={styles.input}
+                />
+              </div>
 
-            <div className="input-group">
-              <p style={styles.label}>หมายเลขโทรศัพท์</p>
-              <input
-                type="tel"
-                placeholder=""
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                style={styles.input}
-              />
-            </div>
+              <div className="input-group">
+                <p style={styles.label}>หมายเลขโทรศัพท์</p>
+                <input
+                  type="tel"
+                  placeholder=""
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  style={styles.input}
+                />
+              </div>
 
-            <div className="input-group">
-              <p style={styles.label}>อีเมล์ผู้ใช้งาน</p>
-              <input
-                type="email"
-                id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder=""
-                required
-                style={styles.input}
-              />
-            </div>
+              <div className="input-group">
+                <p style={styles.label}>อีเมล์ผู้ใช้งาน</p>
+                <input
+                  type="email"
+                  id="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder=""
+                  required
+                  style={styles.input}
+                />
+              </div>
 
-            <button type="submit" style={styles.button}>
-              ยืนยัน
-            </button>
-            <div style={{ height: 220 }}></div>
-          </form>
+              <button type="submit" style={styles.button}>
+                ยืนยัน
+              </button>
+            </form>
+
+          </div>
         </div>
       )}
     </>
@@ -99,15 +128,13 @@ const styles = {
     color: "#FFFFFF",
     fontSize: 16,
     fontWeight: 600,
-    marginLeft: 48,
     marginTop: 16,
   },
   input: {
     color: "black",
     backgroundColor: "#D9D9D9",
-    marginLeft: 48,
     fontSize: 16,
-    width: 300,
+    width: "100%",
     paddingBlock: 16,
     border: "2px solid #D9D9D9",
     borderRadius: 10,

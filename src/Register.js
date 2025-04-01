@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { register } from "./services/userService";
 import { useNavigate } from "react-router-dom";
+import ErrorMessage from "./components/ErrorMessage";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -15,17 +16,14 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Check if required fields are filled
-    if (!name || !email || !phone || !password || !confirmPassword) {
-      setError("กรุณากรอกข้อมูลให้ครบ");
-      return;
-    }
+    if (!name) return setError("กรุณากรอกชื่อผู้ใช้งาน");
+    if (!email) return setError("กรุณากรอกอีเมล");
+    if (!phone) return setError("กรุณากรอกหมายเลขโทรศัพท์");
+    if (!password) return setError("กรุณากรอกรหัสผ่าน");
+    if (!confirmPassword) return setError("กรุณายืนยันรหัสผ่าน");
 
     // Check if passwords match
-    if (password !== confirmPassword) {
-      setError("รหัสผ่านไม่ตรงกัน");
-      return;
-    }
+    if (password !== confirmPassword) return setError("รหัสผ่านไม่ตรงกัน");
 
     setError(""); // Clear any previous errors
 
@@ -61,7 +59,6 @@ const Register = () => {
               color: "#FFFFFF",
               fontSize: 16,
               fontWeight: 600,
-              marginLeft: 48,
               marginTop: 0,
             }}
           >
@@ -75,9 +72,8 @@ const Register = () => {
             style={{
               color: "black",
               backgroundColor: "#D9D9D9",
-              marginLeft: 48,
               fontSize: 16,
-              width: 300,
+              width: "100%",
               paddingBlock: 16,
               border: "2px solid #D9D9D9",
               borderRadius: 10,
@@ -92,7 +88,6 @@ const Register = () => {
               color: "#FFFFFF",
               fontSize: 16,
               fontWeight: 600,
-              marginLeft: 48,
               marginTop: 16,
             }}
           >
@@ -106,9 +101,8 @@ const Register = () => {
             style={{
               color: "black",
               backgroundColor: "#D9D9D9",
-              marginLeft: 48,
               fontSize: 16,
-              width: 300,
+              width: "100%",
               paddingBlock: 16,
               border: "2px solid #D9D9D9",
               borderRadius: 10,
@@ -122,7 +116,6 @@ const Register = () => {
               color: "#FFFFFF",
               fontSize: 16,
               fontWeight: 600,
-              marginLeft: 48,
               marginTop: 16,
             }}
           >
@@ -133,9 +126,8 @@ const Register = () => {
             style={{
               color: "black",
               backgroundColor: "#D9D9D9",
-              marginLeft: 48,
               fontSize: 16,
-              width: 300,
+              width: "100%",
               paddingBlock: 16,
               border: "2px solid #D9D9D9",
               borderRadius: 10,
@@ -155,7 +147,6 @@ const Register = () => {
               color: "#FFFFFF",
               fontSize: 16,
               fontWeight: 600,
-              marginLeft: 48,
               marginTop: 16,
             }}
           >
@@ -169,9 +160,8 @@ const Register = () => {
             style={{
               color: "black",
               backgroundColor: "#D9D9D9",
-              marginLeft: 48,
               fontSize: 16,
-              width: 300,
+              width: "100%",
               paddingBlock: 16,
               border: "2px solid #D9D9D9",
               borderRadius: 10,
@@ -185,7 +175,6 @@ const Register = () => {
               color: "#FFFFFF",
               fontSize: 16,
               fontWeight: 600,
-              marginLeft: 48,
               marginTop: 16,
             }}
           >
@@ -199,9 +188,8 @@ const Register = () => {
             style={{
               color: "black",
               backgroundColor: "#D9D9D9",
-              marginLeft: 48,
               fontSize: 16,
-              width: 300,
+              width: "100%",
               paddingBlock: 16,
               border: "2px solid #D9D9D9",
               borderRadius: 10,
@@ -209,20 +197,7 @@ const Register = () => {
           />
         </div>
 
-        {/* แสดงข้อความผิดพลาด */}
-        {error && (
-          <p
-            style={{
-              color: "red",
-              textAlign: "center",
-              fontSize: 14,
-              fontWeight: 400,
-              marginTop: 10,
-            }}
-          >
-            {error}
-          </p>
-        )}
+        <ErrorMessage message={error} />
 
         <button
           type="submit"

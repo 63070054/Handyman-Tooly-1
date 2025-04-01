@@ -23,6 +23,7 @@ const FullAccount = () => {
             flexDirection: "column",
             justifyContent: "center",
             flex: 1,
+            position: "relative"
           }}>
             <img
               src={userInfo.imageUrl}
@@ -34,6 +35,7 @@ const FullAccount = () => {
                 marginLeft: "auto",
                 marginRight: "auto",
                 borderRadius: "50%",
+                background: "#D9D9D9"
               }}
             />
             <p
@@ -58,6 +60,7 @@ const FullAccount = () => {
                 height: "100%",
                 paddingLeft: 25,
                 paddingRight: 25,
+                flex: 1,
               }}
             >
               <Link
@@ -66,6 +69,7 @@ const FullAccount = () => {
                   display: "flex",
                   justifyContent: "space-between",
                   alignItems: "center",
+                  textDecoration: "none"
                 }}
               >
                 <p
@@ -88,6 +92,7 @@ const FullAccount = () => {
                   paddingRight: 25,
                   height: 2,
                   backgroundColor: "#A0ADBA",
+                  textDecoration: "none"
                 }}
               ></div>
               <Link
@@ -96,6 +101,7 @@ const FullAccount = () => {
                   display: "flex",
                   justifyContent: "space-between",
                   alignItems: "center",
+                  textDecoration: "none"
                 }}
               >
                 <p
@@ -118,6 +124,7 @@ const FullAccount = () => {
                   paddingRight: 25,
                   height: 2,
                   backgroundColor: "#A0ADBA",
+                  textDecoration: "none"
                 }}
               ></div>
               <Link
@@ -126,6 +133,7 @@ const FullAccount = () => {
                   display: "flex",
                   justifyContent: "space-between",
                   alignItems: "center",
+                  textDecoration: "none"
                 }}
               >
                 <p
@@ -148,6 +156,7 @@ const FullAccount = () => {
                   paddingRight: 25,
                   height: 2,
                   backgroundColor: "#A0ADBA",
+                  textDecoration: "none"
                 }}
               ></div>
               <Link
@@ -161,9 +170,10 @@ const FullAccount = () => {
                   color: "black",
                   fontSize: 16,
                   fontWeight: 600,
-                  marginBottom: 16,
+                  marginBottom: 32,
                   textDecoration: "none",
                   cursor: "pointer",
+                  textDecoration: "none"
                 }}
               >
                 ออกจากระบบ

@@ -25,6 +25,7 @@ const Post = () => {
   const [selectedProvince, setSelectedProvince] = useState(null);
   const [selectedAmphure, setSelectedAmphure] = useState(null);
   const [selectedTambon, setSelectedTambon] = useState(null);
+  const [query, setQuery] = useState(null);
 
   const fetchPosts = async () => {
     setLoading(true);
@@ -114,6 +115,15 @@ const Post = () => {
   if (loading) return <LoadingIndicator />;;
   if (error) return <p>{error}</p>;
 
+  const filteredPosts = query
+    ? jobPosts.filter(post =>
+      post?.description?.includes(query) ||
+      post?.title?.includes(query) ||
+      post?.userId?.name?.includes(query) ||
+      post?.userId?.email?.includes(query)
+    )
+    : jobPosts;
+
   return (
     <div style={{ flex: 1, display: "flex", flexDirection: "column", position: "relative" }}>
       <a
@@ -165,6 +175,8 @@ const Post = () => {
         {/* Filters for Location */}
         <input
           type="text"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
           placeholder="ค้นหา"
           style={{
             color: "black",
@@ -263,7 +275,7 @@ const Post = () => {
 
       <div className="screensize_white">
         <div className="post-container">
-          {jobPosts.map((post) => (
+          {filteredPosts.map((post) => (
             <button
               key={post._id}
               onClick={() => handlePostClick(post._id)}

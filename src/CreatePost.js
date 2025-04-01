@@ -14,6 +14,7 @@ import LoadingIndicator from "./components/LoadingIndicator";
 import LoadingSpinner from "./components/LoadingSpinner";
 import { convertFileToBase64, uploadImage } from "./services/imageService";
 import useUserStore from "./store/useUserStore";
+import ErrorMessage from "./components/ErrorMessage";
 
 const CreatePost = () => {
   const [job, setJob] = useState("");
@@ -31,6 +32,7 @@ const CreatePost = () => {
   const [loadingLocations, setLoadingLocations] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [formErrors, setFormErrors] = useState("");
 
   const navigate = useNavigate();
   const { userInfo } = useUserStore();
@@ -87,6 +89,15 @@ const CreatePost = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!image) return setFormErrors("กรุณาเลือกรูปภาพ");
+    if (!job) return setFormErrors("กรุณากรอกชื่องาน");
+    if (!minimumPrice) return setFormErrors("กรุณากรอกราคาต่ำสุด");
+    if (!maximumPrice) return setFormErrors("กรุณากรอกราคาสูงสุด");
+    if (!description) return setFormErrors("กรุณากรอกรายละเอียดงาน");
+    if (!selectedProvince) return setFormErrors("กรุณาเลือกจังหวัด");
+    if (!selectedAmphure) return setFormErrors("กรุณาเลือกอำเภอ");
+    if (!selectedTambon) return setFormErrors("กรุณาเลือกตำบล");
 
     if (image) {
       try {
@@ -447,6 +458,8 @@ const CreatePost = () => {
             </select>
           </>
         )}
+
+        <ErrorMessage message={formErrors} />
 
         <button
           type="submit"

@@ -175,7 +175,7 @@ const UserDetail = () => {
                                     >
                                         รีวิวผู้ใช้งานนี้แล้ว
                                     </button>
-                                ) : (<a href={`/review/${userId}`}>
+                                ) : (<a href={`/review/${userId}`} style={{ textDecoration: "none" }}>
                                     <button
                                         type="button"
                                         className="submit-button"
