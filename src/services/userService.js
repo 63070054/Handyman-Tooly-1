@@ -1,16 +1,26 @@
-import API from "../api/axios";
+import API from "../api/interceptors";
 
 // ✅ ดึงข้อมูลผู้ใช้ที่ล็อกอินอยู่
-export const getMe = async () => {
+export const getMe = async (params) => {
   const token = localStorage.getItem("token");
-  return API.get("/users/me", {
-    headers: { Authorization: `Bearer ${token}` },
-  }).then((res) => res.data);
+  const queryString = new URLSearchParams(params).toString();
+  try {
+    const response = await API.get(`/users/me?${queryString}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return response.data;
+  } catch (error) {
+    localStorage.removeItem("token");
+  }
 };
 
 // ✅ สมัครสมาชิก
 export const register = async (userData) => {
   return API.post("/users/register", userData);
+};
+
+export const getUserById = async (userId) => {
+  return API.get(`/users/${userId}`);
 };
 
 // ✅ ล็อกอิน
@@ -30,9 +40,4 @@ export const updateUser = async (userData) => {
       "Content-Type": "application/json",
     },
   });
-};
-
-// ✅ ออกจากระบบ
-export const logout = () => {
-  localStorage.removeItem("token");
 };

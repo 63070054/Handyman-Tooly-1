@@ -1,4 +1,4 @@
-import API from "../api/axios"; // Assuming you have the axios instance set up
+import API from "../api/interceptors"; // Assuming you have the axios instance set up
 
 // ✅ ดึงข้อมูลจังหวัดทั้งหมด
 export const getProvinces = async () => {

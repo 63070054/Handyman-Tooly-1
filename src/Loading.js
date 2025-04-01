@@ -21,7 +21,6 @@ const Loading = () => {
           textAlign: "center",
           marginTop: 10,
           color: "#FFFFFF",
-          fontFamily: "Prompt",
           fontSize: 32,
           fontWeight: 700,
           marginBottom: 100,

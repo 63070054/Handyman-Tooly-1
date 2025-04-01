@@ -1,4 +1,4 @@
-import API from "../api/axios";
+import API from "../api/interceptors";
 
 // สร้างโพสต์ใหม่
 export const createPost = async (postData) => {

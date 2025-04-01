@@ -1,11 +1,12 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Prompt';
+}
+
 /* src/styles/App.css */
 .login-container {
-  width: 300px;
   margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10%;
   text-align: center;
 }
 
@@ -14,13 +15,11 @@ h2 {
 }
 
 .input-group {
-  margin-bottom: 15px;
   text-align: left;
 }
 
 .input-group label {
   display: block;
-  margin-bottom: 5px;
 }
 
 .input-group input {
@@ -93,7 +92,7 @@ button:hover {
   display: flex;
   background-color: rgb(255, 255, 255);
   border-radius: 15px;
-  height: 100%
+  flex: 1;
 }
 
 .post-container {
@@ -115,11 +114,6 @@ button:hover {
   background-color: #1E90FF;
   padding: 10px;
   border: none;
-}
-
-.post_box:active {
-  background-color: #1E90FF; /* เปลี่ยนสีเมื่อกด */
-  transform: scale(0.98); /* กดแล้วหดลงเล็กน้อย */
 }
 
 .post_box b {
@@ -164,7 +158,7 @@ button:hover {
 .box_price a{ 
   font-size: 12px;
   font-weight: 700;
-  color: #ffffff;
+  color: #4D4C4CC7;
   word-wrap: break-word;
   white-space: nowrap;
 }
@@ -181,7 +175,6 @@ button:hover {
   width: fit-content; /* ปรับขนาดอัตโนมัติ */
   padding: 2px 8px; /* เพิ่ม padding เพื่อให้ดูดีขึ้น */
   height: 18px;
-  left: 8px;
   margin-top: 5px;
   border: none;
   border-radius: 10px;
@@ -292,11 +285,11 @@ button:hover {
 }
 
 .filled-star {
-  color: gold;
+  color: orange;
 }
 
 .empty-star {
-  color: lightgray;
+  color: white;
 }
 
 .filters {

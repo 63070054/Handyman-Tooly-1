@@ -39,7 +39,6 @@ const PDPAAccount = () => {
           <p
             style={{
               color: "#FFFFFF",
-              fontFamily: "Prompt",
               fontSize: 16,
               fontWeight: 600,
               marginLeft: 48,
@@ -69,7 +68,6 @@ const PDPAAccount = () => {
           <p
             style={{
               color: "#FFFFFF",
-              fontFamily: "Prompt",
               fontSize: 16,
               fontWeight: 600,
               marginLeft: 48,
@@ -101,7 +99,6 @@ const PDPAAccount = () => {
           <p
             style={{
               color: "#FFFFFF",
-              fontFamily: "Prompt",
               fontSize: 16,
               fontWeight: 600,
               marginLeft: 48,
@@ -134,7 +131,6 @@ const PDPAAccount = () => {
             marginTop: 30,
             color: "#1E90FF",
             backgroundColor: "#D9D9D9",
-            fontFamily: "Prompt",
             fontSize: 16,
             fontWeight: 600,
             width: 130,
