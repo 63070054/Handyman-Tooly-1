@@ -166,7 +166,7 @@ button:hover {
 .box_address_container {
   display: flex;
   gap: 5px; /* ระยะห่างระหว่างกล่อง */
- 
+  flex-wrap: wrap;
 }
 
 .box_address{
