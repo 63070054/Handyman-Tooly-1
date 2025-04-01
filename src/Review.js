@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import { getUserById } from "./services/userService";
 import ClickableStarRating from "./components/ClickableStartRating";
 import { review } from "./services/reviewService";
+import ErrorMessage from "./components/ErrorMessage";
+import LoadingIndicator from "./components/LoadingIndicator";
 
 const Review = () => {
 
@@ -14,6 +16,8 @@ const Review = () => {
 
     const [user, setUser] = useState(null);
     const [comment, setComment] = useState(null);
+    const [formErrors, setFormErrors] = useState("");
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
 
@@ -36,6 +40,12 @@ const Review = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        if (!rating) return setFormErrors("กรุณาให้คะแนน")
+        if (!comment) return setFormErrors("กรุณาแสดงความคิดเห็น")
+
+        setLoading(true)
+        setFormErrors("");
+
         try {
             await review({
                 reviewerId: userInfo._id,
@@ -46,9 +56,14 @@ const Review = () => {
             navigate(`/users/${userId}`)
         } catch (error) {
 
+        } finally {
+            setLoading(false)
         }
 
     }
+
+    if (loading) return <LoadingIndicator />;;
+
     return (
         <>
             {userInfo && user && (
@@ -66,7 +81,7 @@ const Review = () => {
                                         borderRadius: "50%",
                                     }}
                                 />
-                                <span style={{ fontSize: 36, color: "white" }}>{userInfo.name}</span>
+                                <span style={{ fontSize: 16, color: "white" }}>{userInfo.name}</span>
                             </div>
                             <h1 style={{ color: "white" }}> => </h1>
                             <div style={{ display: "flex", flexDirection: "column", gap: 8, justifyContent: "center", alignItems: "center" }}>
@@ -79,7 +94,7 @@ const Review = () => {
                                         borderRadius: "50%",
                                     }}
                                 />
-                                <span style={{ fontSize: 36, color: "white" }}>{user.name}</span>
+                                <span style={{ fontSize: 16, color: "white" }}>{user.name}</span>
                             </div>
                         </div>
                         <p
@@ -118,6 +133,7 @@ const Review = () => {
                                 borderRadius: 10,
                             }}
                         ></textarea>
+                        <ErrorMessage message={formErrors} />
                         <button
                             type="submit"
                             className="submit-button"
