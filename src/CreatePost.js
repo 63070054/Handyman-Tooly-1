@@ -184,8 +184,9 @@ const CreatePost = () => {
             allowMultiple={false}
             onupdatefiles={handleImageChange}
             name="image"
-            labelIdle=''
-
+            labelIdle=""
+            acceptedFileTypes={['image/jpeg', 'image/png', 'image/jpg']}
+            maxFileSize="2MB"
           />
           {image && (
             <img src={URL.createObjectURL(image)} alt="Preview" style={{ width: "100%" }} />
