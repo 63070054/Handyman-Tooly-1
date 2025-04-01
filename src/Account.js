@@ -51,7 +51,7 @@ const Account = () => {
               <p style={styles.label}>ชื่อผู้ใช้งาน</p>
               <input
                 type="text"
-                placeholder="Full Name"
+                placeholder=""
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 style={styles.input}
@@ -62,7 +62,7 @@ const Account = () => {
               <p style={styles.label}>หมายเลขโทรศัพท์</p>
               <input
                 type="tel"
-                placeholder="Phone Number"
+                placeholder=""
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 style={styles.input}
@@ -76,7 +76,7 @@ const Account = () => {
                 id="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email"
+                placeholder=""
                 required
                 style={styles.input}
               />

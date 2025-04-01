@@ -53,7 +53,7 @@ const MyReview = () => {
               </p>
 
               <div style={{ display: "flex", fontSize: 48, justifyContent: 'center', alignItems: 'center', gap: 12, color: "white" }}>
-                <span>{userInfo.averageReview}</span>
+              <span>{userInfo.averageReview?.toFixed(2)}</span>
                 <span
                   className="filled-star"
                 >

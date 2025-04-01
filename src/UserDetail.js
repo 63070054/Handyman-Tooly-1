@@ -70,7 +70,7 @@ const UserDetail = () => {
                             </p>
 
                             <div style={{ display: "flex", fontSize: 48, justifyContent: 'center', alignItems: 'center', gap: 12, color: "white" }}>
-                                <span>{user.averageReview}</span>
+                                <span>{user.averageReview.toFixed(2)}</span>
                                 <span
                                     className="filled-star"
                                 >

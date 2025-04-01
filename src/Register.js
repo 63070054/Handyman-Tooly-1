@@ -69,7 +69,7 @@ const Register = () => {
           </p>
           <input
             type="text"
-            placeholder="Full Name"
+            placeholder=""
             value={name}
             onChange={(e) => setName(e.target.value)}
             style={{
@@ -100,7 +100,7 @@ const Register = () => {
           </p>
           <input
             type="tel"
-            placeholder="Phone Number"
+            placeholder=""
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
             style={{
@@ -144,7 +144,7 @@ const Register = () => {
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter your email"
+            placeholder=""
             required
           />
         </div>
@@ -163,7 +163,7 @@ const Register = () => {
           </p>
           <input
             type="password"
-            placeholder="Password"
+            placeholder=""
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             style={{
@@ -193,7 +193,7 @@ const Register = () => {
           </p>
           <input
             type="password"
-            placeholder="Confirm Password"
+            placeholder=""
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             style={{
