@@ -26,7 +26,6 @@ export const getUserById = async (userId) => {
 // ✅ ล็อกอิน
 export const login = async (credentials) => {
   const response = await API.post("/users/login", credentials);
-  console.log("response", response)
   localStorage.setItem("token", response.data.token); // เก็บ Token
   return response.data;
 };

@@ -31,9 +31,6 @@ const PostDetail = () => {
   if (loading) return <LoadingIndicator />;
   if (error) return <p>{error}</p>;
 
-  console.log("post", post)
-  console.log("userInfo", userInfo)
-
   return (
     <>
       {post && userInfo && (

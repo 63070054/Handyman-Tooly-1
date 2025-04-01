@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { register } from "./services/userService";
 import { useNavigate } from "react-router-dom";
 import ErrorMessage from "./components/ErrorMessage";
+import LoadingIndicator from "./components/LoadingIndicator";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -10,6 +11,7 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate(); // Initialize navigate
 
@@ -25,6 +27,7 @@ const Register = () => {
     // Check if passwords match
     if (password !== confirmPassword) return setError("รหัสผ่านไม่ตรงกัน");
 
+    setLoading(true)
     setError(""); // Clear any previous errors
 
     try {
@@ -35,8 +38,12 @@ const Register = () => {
 
     } catch (err) {
       setError("เกิดข้อผิดพลาดในการสมัครสมาชิก");
+    } finally {
+      setLoading(false);
     }
   };
+
+  if (loading) return <LoadingIndicator />;;
 
   return (
     <div>

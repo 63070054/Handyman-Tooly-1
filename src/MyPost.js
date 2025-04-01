@@ -39,8 +39,6 @@ const MyPost = () => {
       if (selectedTambon) params.tambonId = selectedTambon;
 
       const response = await getMe(params);
-      console.log("response", response)
-
       setJobPosts(response.posts);
     } catch (err) {
       setError("Failed to fetch posts.");
@@ -59,7 +57,6 @@ const MyPost = () => {
       } catch (err) {
         setError("Failed to fetch provinces.");
       } finally {
-        console.log("sdfsdf")
         setLoadingLocations(false);
       }
     };

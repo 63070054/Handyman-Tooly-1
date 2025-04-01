@@ -56,7 +56,6 @@ const Post = () => {
       } catch (err) {
         setError("Failed to fetch provinces.");
       } finally {
-        console.log("sdfsdf")
         setLoadingLocations(false);
       }
     };

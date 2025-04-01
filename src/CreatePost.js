@@ -99,39 +99,33 @@ const CreatePost = () => {
     if (!selectedAmphure) return setFormErrors("กรุณาเลือกอำเภอ");
     if (!selectedTambon) return setFormErrors("กรุณาเลือกตำบล");
 
-    if (image) {
-      try {
+    setLoading(true);
+    try {
 
-        const base64Image = await convertFileToBase64(image);
+      const base64Image = await convertFileToBase64(image);
 
-        const response = await uploadImage(base64Image)
+      const response = await uploadImage(base64Image)
 
-        const imageUrl = response.data.imageUrl; // Cloudinary URL
+      const imageUrl = response.data.imageUrl; // Cloudinary URL
 
-        const postData = {
-          title: job,
-          minimumPrice: parseInt(minimumPrice),
-          maximumPrice: parseInt(maximumPrice),
-          description,
-          provinceId: parseInt(selectedProvince),
-          amphureId: parseInt(selectedAmphure),
-          tambonId: parseInt(selectedTambon),
-          imageUrl,
-          services,
-          userId: userInfo._id,
-        };
+      const postData = {
+        title: job,
+        minimumPrice: parseInt(minimumPrice),
+        maximumPrice: parseInt(maximumPrice),
+        description,
+        provinceId: parseInt(selectedProvince),
+        amphureId: parseInt(selectedAmphure),
+        tambonId: parseInt(selectedTambon),
+        imageUrl,
+        services,
+        userId: userInfo._id,
+      };
 
-        console.log("postData", postData)
-
-        await createPost(postData);
-        navigate("/posts");
-      } catch (err) {
-        console.log("error", error)
-      } finally {
-        setLoading(false);
-      }
-    } else {
-      setError("Please upload an image.");
+      await createPost(postData);
+      navigate("/posts");
+    } catch (err) {
+    } finally {
+      setLoading(false);
     }
   };
 
