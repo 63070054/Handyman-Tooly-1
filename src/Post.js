@@ -115,7 +115,7 @@ const Post = () => {
   if (error) return <p>{error}</p>;
 
   return (
-    <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
+    <div style={{ flex: 1, display: "flex", flexDirection: "column", position: "relative" }}>
       <a
         className="menu"
         href="/createpost"
